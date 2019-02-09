@@ -35,7 +35,7 @@ with open(Electdata, newline='') as csvfile:
     s = sum(listcand.values())
     for k, v in listcand.items():
         pct = ("{0:.1%}".format(v / s))
-        print(k, pct)
+        print(k, pct, v)
     
 
 print(Votes)
