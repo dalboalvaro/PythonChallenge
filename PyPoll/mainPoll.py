@@ -8,9 +8,12 @@ Electdata = os.path.join('election_data.csv')
 
 # Read in the CSV file
 with open(Electdata, newline='') as csvfile:
+
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
+    # Create variable to store counter of votes per candidate
     votescand = ct.Counter()
+    # Skip header
     header = next(csvreader)
 
     Votes = 0
@@ -32,12 +35,15 @@ with open(Electdata, newline='') as csvfile:
     #Print Title and Number of Votes    
     print(f"Election Results")
     print(f"----------------")
-    print(f"Number  of Votes")
+    print(f"Number of Votes")
     print(Votes)
     print(f"----------------")
     
     #Convert number of votes per candidate stored as counter to Dictionary
     listcand = dict(votescand)
+
+    #Find Winner and store in variable
+    winner = max(listcand, key=listcand.get)
 
     #Calculate percentage of votes based on values in dictionary
     s = sum(listcand.values())
@@ -46,25 +52,28 @@ with open(Electdata, newline='') as csvfile:
 
      #Print Summary of Candidates Names, percentages and votes  
         print(k, pct, v)
+    
 
 #Print Winner     
 print(f"----------------")
 print(f"Winner")
-print(votescand.most_common(1))
+print(winner)
 print(f"----------------")
 
+# Set variable for output file
+output_file = os.path.join("Results.csv")
 
+#  Open the output file
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile) 
 
-
- 
-
-
-
-
-
-    
-
-
-
-
-
+# Print to the CSV output
+    writer.writerow(["Election Results"])
+    writer.writerow(["----------------"])
+    writer.writerow(["Number of Votes"])
+    writer.writerow([str(Votes)])
+    writer.writerow(["----------------"])
+    writer.writerow(["Winner"])
+    writer.writerow([str(winner)])
+    writer.writerow(["----------------"])
+  
