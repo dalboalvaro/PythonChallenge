@@ -25,24 +25,34 @@ with open(Electdata, newline='') as csvfile:
         # Count number of rows and store as months
         Votes += 1
 
-        #Count votes per candidate
+        #Count votes per candidate and store in counter
         candidate = row[2]
         votescand[candidate] += 1
 
+    #Print Title and Number of Votes    
+    print(f"Election Results")
+    print(f"----------------")
+    print(f"Number  of Votes")
+    print(Votes)
+    print(f"----------------")
+    
+    #Convert number of votes per candidate stored as counter to Dictionary
     listcand = dict(votescand)
 
-        
+    #Calculate percentage of votes based on values in dictionary
     s = sum(listcand.values())
     for k, v in listcand.items():
         pct = ("{0:.1%}".format(v / s))
-        print(k, pct, v)
-    
 
-print(Votes)
-print(candidates)
-print(votescand)
+     #Print Summary of Candidates Names, percentages and votes  
+        print(k, pct, v)
+
+#Print Winner     
+print(f"----------------")
+print(f"Winner")
 print(votescand.most_common(1))
-print(listcand)
+print(f"----------------")
+
 
 
 

@@ -25,10 +25,10 @@ with open(budgetCSV, newline='') as csvfile:
     
         # Create list of yearly change - value in column 2 from next row less present row
     change=[]
-
     for i in range(1, len(Profit)):
         change.append((float(Profit[i]-float(Profit[i-1]))))
-    
+
+     # Calculate average, greatest increase and decrease
     averagechange = sum(change) / float(Months-1)
     greatestIncrease = max(change) 
     greatestdecrease = min(change)
@@ -41,11 +41,3 @@ with open(budgetCSV, newline='') as csvfile:
     print("Average Change:" + str(averagechange))
     print("Greatest Increase in Profits:" + str(greatestIncrease))
     print("Greatest Decrease in Profits:" + str(greatestdecrease))
-
-  #    Financial Analysis
-  #----------------------------
-  #Total Months: 86
-  #Total: $38382578
-  #Average  Change: $-2315.12
-  #Greatest Increase in Profits: Feb-2012 ($1926159)
-  #Greatest Decrease in Profits: Sep-2013 ($-2196167)
