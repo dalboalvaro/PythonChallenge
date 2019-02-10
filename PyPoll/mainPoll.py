@@ -39,20 +39,39 @@ with open(Electdata, newline='') as csvfile:
     print(Votes)
     print(f"----------------")
     
-    #Convert number of votes per candidate stored as counter to Dictionary
-    listcand = dict(votescand)
+    # Set variable for output file
+    output_file = os.path.join("Results.csv")
 
-    #Find Winner and store in variable
-    winner = max(listcand, key=listcand.get)
+        #  Open the output file
+    with open(output_file, "w", newline="") as datafile:
+        writer = csv.writer(datafile) 
 
-    #Calculate percentage of votes based on values in dictionary
-    s = sum(listcand.values())
-    for k, v in listcand.items():
-        pct = ("{0:.1%}".format(v / s))
+        # Print to the CSV output
+        writer.writerow(["Election Results"])
+        writer.writerow(["----------------"])
+        writer.writerow(["Number of Votes"])
+        writer.writerow([str(Votes)])
+        writer.writerow(["----------------"])
+
+        #Convert number of votes per candidate stored as counter to Dictionary
+        listcand = dict(votescand)
+
+        #Find Winner and store in variable
+        winner = max(listcand, key=listcand.get)
+
+        #Calculate percentage of votes based on values in dictionary
+        s = sum(listcand.values())
+        for k, v in listcand.items():
+            pct = ("{0:.1%}".format(v / s))
 
      #Print Summary of Candidates Names, percentages and votes  
-        print(k, pct, v)
-    
+            print(k, pct, v)
+            writer.writerow([str(k), str(pct), str(v)])
+
+        writer.writerow(["----------------"])
+        writer.writerow(["Winner"])
+        writer.writerow([str(winner)])
+        writer.writerow(["----------------"])
 
 #Print Winner     
 print(f"----------------")
@@ -60,20 +79,5 @@ print(f"Winner")
 print(winner)
 print(f"----------------")
 
-# Set variable for output file
-output_file = os.path.join("Results.csv")
 
-#  Open the output file
-with open(output_file, "w", newline="") as datafile:
-    writer = csv.writer(datafile) 
-
-# Print to the CSV output
-    writer.writerow(["Election Results"])
-    writer.writerow(["----------------"])
-    writer.writerow(["Number of Votes"])
-    writer.writerow([str(Votes)])
-    writer.writerow(["----------------"])
-    writer.writerow(["Winner"])
-    writer.writerow([str(winner)])
-    writer.writerow(["----------------"])
-  
+   
