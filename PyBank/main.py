@@ -41,3 +41,20 @@ with open(budgetCSV, newline='') as csvfile:
     print("Average Change:" + str(averagechange))
     print("Greatest Increase in Profits:" + str(greatestIncrease))
     print("Greatest Decrease in Profits:" + str(greatestdecrease))
+
+# Set variable for output file
+output_file = os.path.join("FinancialAnalysis.csv")
+
+#  Open the output file
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile) 
+
+# Print to the CSV output
+    writer.writerow(["Financial Analysis"])
+    writer.writerow(["----------------"])
+    writer.writerow(["Total Months:" + str(Months)])
+    writer.writerow(["Total:" + str(sum(Profit))])
+    writer.writerow(["Average Change:" + str(averagechange)])
+    writer.writerow(["Greatest Increase in Profits:" + str(greatestIncrease)])
+    writer.writerow(["Greatest Decrease in Profits:" + str(greatestdecrease)])
+    
